@@ -1,18 +1,34 @@
 //
-//  NetworkController.swift
+//  AppetizerController.swift
 //  SwiftUI-Appetizers
 //
 //  Created by Ha Viet Thang on 25/9/24.
 //
 
 import Foundation
- 
-final class AppetizerController{
+import UIKit
+
+final class AppetizerController: ObservableObject {
+    @Published private var quantities: [Int: Int] = [:]
+    
     static let shared = AppetizerController()
     
-    private init(){
-        
+    init() {}
+    
+    func getQuantity(for appetizerID: Int) -> Int {
+        return quantities[appetizerID] ?? 1
     }
+    
+    func setQuantity(_ quantity: Int, for appetizerID: Int) {
+        quantities[appetizerID] = max(1, min(quantity, 20))
+    }
+    
+    func changeQuantity(for appetizerID: Int, isIncrement: Bool) {
+        let currentQuantity = getQuantity(for: appetizerID)
+        if isIncrement{ setQuantity(currentQuantity + 1, for: appetizerID)}
+        else {setQuantity(currentQuantity - 1, for: appetizerID)}
+    }
+    
     
     func getAppetizers(completed: @escaping (Result<[AppetizersModel], AppErrors>) -> Void){
         guard let url = URL(string: AppConstants.BASE_URL + AppConstants.RECOMMENDED_PRODUCT_URL) else{
@@ -44,4 +60,21 @@ final class AppetizerController{
         }
         task.resume()
     }
+    
+    func showSnackbar(title: String, message: String) {
+        // Display a notification as a UIAlertController
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+        // Present the alert to the userN
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = scene.windows.first {
+            if let topController = window.rootViewController {
+                topController.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+
 }
+
+

@@ -10,7 +10,7 @@ import SwiftUI
 struct AccountView: View {
     @StateObject private var viewModel = UserModel()
     var body: some View {
-        NavigationView{
+        NavigationStack{
             Form{
                 Section(header: Text("Personal Info")){
                     TextField("First Name", text: $viewModel.firstName)

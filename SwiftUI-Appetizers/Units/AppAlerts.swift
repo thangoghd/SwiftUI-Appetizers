@@ -27,3 +27,5 @@ struct AlertContext{
     static let userSaveSuccess = AppAlerts(title: "Profile Saved", message: "Your profile was succesfully saved", primaryButtonTitle: "OK")
     static let userSaveFailed = AppAlerts(title: "Error While Saving", message: "An error while saving your proflie data", primaryButtonTitle: "OK")
 }
+
+

@@ -9,10 +9,12 @@ import SwiftUI
 
 struct AppetizerDetailView: View {
     let appetizer: AppetizersModel
+    @ObservedObject var controller: AppetizerController
     @Binding var isShowing: Bool
     @Binding var isAnimation: Bool
+    
     var body: some View {
-        VStack{
+        VStack {
             AsyncImage(url: URL(string: AppConstants.BASE_URL + AppConstants.UPLOAD_URL + appetizer.img)){ image in
                 image.resizable().aspectRatio(contentMode: .fill)
             } placeholder: {
@@ -30,27 +32,41 @@ struct AppetizerDetailView: View {
                         ReviewStars(score: appetizer.stars)
                     }
                 }
-                HStack(spacing: 40){
+                HStack(spacing: 20){
                     VStack{
                         Text("Location").font(.caption).fontWeight(.bold)
                         Text(appetizer.location).foregroundStyle(.secondary).fontWeight(.semibold).italic()
                     }
-                    HStack(spacing: 20){
-                        Text("-")
-                        Text("0").foregroundStyle(.red)
-                        Text("+")
+                    HStack(spacing: 20) {
+                        Button(action: {
+                            controller.changeQuantity(for: appetizer.id, isIncrement: false)
+                        }) {
+                            Text("-")
+                        }
+                        Text("\(controller.getQuantity(for: appetizer.id))").foregroundStyle(.red)
+                        Button(action: {
+                            controller.changeQuantity(for: appetizer.id, isIncrement: true)
+                        }) {
+                            Text("+")
+                        }
                     }.padding(10).overlay(RoundedRectangle(cornerRadius: 20).stroke(.gray, lineWidth: 1))
                 }
             }
             Spacer()
             
-            Button{
+            Button {
                 print("tapped")
             } label: {
-                Text("$\(appetizer.price, specifier: "%.2f") - Order").font(.title3).fontWeight(.semibold).frame(width: 260, height: 50).foregroundStyle(.white).background(Color.mainColor).clipShape(.rect(cornerRadius: 40))
+                Text("$\(appetizer.price * Double(controller.getQuantity(for: appetizer.id)), specifier: "%.2f") - Order")
+                    .font(.title3).fontWeight(.semibold)
+                    .frame(width: 260, height: 50)
+                    .foregroundStyle(.white)
+                    .background(Color.mainColor)
+                    .clipShape(.rect(cornerRadius: 40))
             }
             .padding(.bottom, 30)
-        }.frame(width: 320, height: 600).background(Color(.systemBackground)).clipShape(.rect(cornerRadius: 40)).shadow(radius: 40)
+        }
+        .frame(width: 320, height: 600).background(Color(.systemBackground)).clipShape(.rect(cornerRadius: 40)).shadow(radius: 40)
             .overlay(Button{
                 withAnimation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0)) {
                     isAnimation = false
@@ -64,6 +80,7 @@ struct AppetizerDetailView: View {
                     Image(systemName: "xmark").imageScale(.medium).frame(width: 44, height: 44).foregroundStyle(.gray)
                 }
             }, alignment:.topTrailing)
+    
     }
 }
 
@@ -105,5 +122,10 @@ struct ReviewStars: View {
 
 
 #Preview {
-    AppetizerDetailView(appetizer: MockData.sampleAppetizer, isShowing: .constant(true), isAnimation: .constant(true))
+    AppetizerDetailView(
+        appetizer: MockData.sampleAppetizer,
+        controller: AppetizerController(),
+        isShowing: .constant(true),
+        isAnimation: .constant(true)
+    )
 }

@@ -8,7 +8,7 @@ import SwiftUI
 
 struct OrderView: View {
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack{
                 List{
                     
