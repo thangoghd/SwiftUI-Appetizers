@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5E7B841E2CA3BC5E00F68D53 /* SwiftUI-Appetizers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Appetizers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E7B842E2CA3BC6000F68D53 /* SwiftUI-AppetizersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-AppetizersTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E7B84382CA3BC6000F68D53 /* SwiftUI-AppetizersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-AppetizersUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E7B841E2CA3BC5E00F68D53 /* SwiftUI-Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E7B842E2CA3BC6000F68D53 /* SwiftUI-FoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-FoodTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E7B84382CA3BC6000F68D53 /* SwiftUI-FoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-FoodUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,9 +85,9 @@
 		5E7B841F2CA3BC5E00F68D53 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5E7B841E2CA3BC5E00F68D53 /* SwiftUI-Appetizers.app */,
-				5E7B842E2CA3BC6000F68D53 /* SwiftUI-AppetizersTests.xctest */,
-				5E7B84382CA3BC6000F68D53 /* SwiftUI-AppetizersUITests.xctest */,
+				5E7B841E2CA3BC5E00F68D53 /* SwiftUI-Food.app */,
+				5E7B842E2CA3BC6000F68D53 /* SwiftUI-FoodTests.xctest */,
+				5E7B84382CA3BC6000F68D53 /* SwiftUI-FoodUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5E7B841D2CA3BC5E00F68D53 /* SwiftUI-Appetizers */ = {
+		5E7B841D2CA3BC5E00F68D53 /* SwiftUI-Food */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5E7B84422CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-Appetizers" */;
+			buildConfigurationList = 5E7B84422CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-Food" */;
 			buildPhases = (
 				5E7B841A2CA3BC5E00F68D53 /* Sources */,
 				5E7B841B2CA3BC5E00F68D53 /* Frameworks */,
@@ -110,16 +110,16 @@
 			fileSystemSynchronizedGroups = (
 				5E7B84202CA3BC5E00F68D53 /* SwiftUI-Appetizers */,
 			);
-			name = "SwiftUI-Appetizers";
+			name = "SwiftUI-Food";
 			packageProductDependencies = (
 			);
 			productName = "SwiftUI-Appetizers";
-			productReference = 5E7B841E2CA3BC5E00F68D53 /* SwiftUI-Appetizers.app */;
+			productReference = 5E7B841E2CA3BC5E00F68D53 /* SwiftUI-Food.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5E7B842D2CA3BC6000F68D53 /* SwiftUI-AppetizersTests */ = {
+		5E7B842D2CA3BC6000F68D53 /* SwiftUI-FoodTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5E7B84452CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-AppetizersTests" */;
+			buildConfigurationList = 5E7B84452CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-FoodTests" */;
 			buildPhases = (
 				5E7B842A2CA3BC6000F68D53 /* Sources */,
 				5E7B842B2CA3BC6000F68D53 /* Frameworks */,
@@ -133,16 +133,16 @@
 			fileSystemSynchronizedGroups = (
 				5E7B84312CA3BC6000F68D53 /* SwiftUI-AppetizersTests */,
 			);
-			name = "SwiftUI-AppetizersTests";
+			name = "SwiftUI-FoodTests";
 			packageProductDependencies = (
 			);
 			productName = "SwiftUI-AppetizersTests";
-			productReference = 5E7B842E2CA3BC6000F68D53 /* SwiftUI-AppetizersTests.xctest */;
+			productReference = 5E7B842E2CA3BC6000F68D53 /* SwiftUI-FoodTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5E7B84372CA3BC6000F68D53 /* SwiftUI-AppetizersUITests */ = {
+		5E7B84372CA3BC6000F68D53 /* SwiftUI-FoodUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5E7B84482CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-AppetizersUITests" */;
+			buildConfigurationList = 5E7B84482CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-FoodUITests" */;
 			buildPhases = (
 				5E7B84342CA3BC6000F68D53 /* Sources */,
 				5E7B84352CA3BC6000F68D53 /* Frameworks */,
@@ -156,11 +156,11 @@
 			fileSystemSynchronizedGroups = (
 				5E7B843B2CA3BC6000F68D53 /* SwiftUI-AppetizersUITests */,
 			);
-			name = "SwiftUI-AppetizersUITests";
+			name = "SwiftUI-FoodUITests";
 			packageProductDependencies = (
 			);
 			productName = "SwiftUI-AppetizersUITests";
-			productReference = 5E7B84382CA3BC6000F68D53 /* SwiftUI-AppetizersUITests.xctest */;
+			productReference = 5E7B84382CA3BC6000F68D53 /* SwiftUI-FoodUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5E7B84192CA3BC5D00F68D53 /* Build configuration list for PBXProject "SwiftUI-Appetizers" */;
+			buildConfigurationList = 5E7B84192CA3BC5D00F68D53 /* Build configuration list for PBXProject "SwiftUI-Food" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5E7B841D2CA3BC5E00F68D53 /* SwiftUI-Appetizers */,
-				5E7B842D2CA3BC6000F68D53 /* SwiftUI-AppetizersTests */,
-				5E7B84372CA3BC6000F68D53 /* SwiftUI-AppetizersUITests */,
+				5E7B841D2CA3BC5E00F68D53 /* SwiftUI-Food */,
+				5E7B842D2CA3BC6000F68D53 /* SwiftUI-FoodTests */,
+				5E7B84372CA3BC6000F68D53 /* SwiftUI-FoodUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		5E7B84302CA3BC6000F68D53 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5E7B841D2CA3BC5E00F68D53 /* SwiftUI-Appetizers */;
+			target = 5E7B841D2CA3BC5E00F68D53 /* SwiftUI-Food */;
 			targetProxy = 5E7B842F2CA3BC6000F68D53 /* PBXContainerItemProxy */;
 		};
 		5E7B843A2CA3BC6000F68D53 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5E7B841D2CA3BC5E00F68D53 /* SwiftUI-Appetizers */;
+			target = 5E7B841D2CA3BC5E00F68D53 /* SwiftUI-Food */;
 			targetProxy = 5E7B84392CA3BC6000F68D53 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -461,7 +461,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUI-Appetizers.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUI-Appetizers";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUI-Food.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUI-Food";
 			};
 			name = Debug;
 		};
@@ -480,7 +480,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUI-Appetizers.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUI-Appetizers";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUI-Food.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUI-Food";
 			};
 			name = Release;
 		};
@@ -521,7 +521,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5E7B84192CA3BC5D00F68D53 /* Build configuration list for PBXProject "SwiftUI-Appetizers" */ = {
+		5E7B84192CA3BC5D00F68D53 /* Build configuration list for PBXProject "SwiftUI-Food" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E7B84402CA3BC6000F68D53 /* Debug */,
@@ -530,7 +530,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5E7B84422CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-Appetizers" */ = {
+		5E7B84422CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-Food" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E7B84432CA3BC6000F68D53 /* Debug */,
@@ -539,7 +539,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5E7B84452CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-AppetizersTests" */ = {
+		5E7B84452CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-FoodTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E7B84462CA3BC6000F68D53 /* Debug */,
@@ -548,7 +548,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5E7B84482CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-AppetizersUITests" */ = {
+		5E7B84482CA3BC6000F68D53 /* Build configuration list for PBXNativeTarget "SwiftUI-FoodUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E7B84492CA3BC6000F68D53 /* Debug */,

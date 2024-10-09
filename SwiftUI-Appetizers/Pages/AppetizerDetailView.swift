@@ -23,16 +23,23 @@ struct AppetizerDetailView: View {
                 Text(appetizer.name).font(.title2).fontWeight(.semibold)
                 Text(appetizer.description).multilineTextAlignment(.center).font(.body).padding()
             }
-            VStack(spacing: 40){
+            VStack(spacing: 30){
                 HStack{
                     Text("Rating").font(.caption).fontWeight(.bold)
                     HStack{
                         ReviewStars(score: appetizer.stars)
                     }
                 }
-                VStack{
-                    Text("Location").font(.caption).fontWeight(.bold)
-                    Text(appetizer.location).foregroundStyle(.secondary).fontWeight(.semibold).italic()
+                HStack(spacing: 40){
+                    VStack{
+                        Text("Location").font(.caption).fontWeight(.bold)
+                        Text(appetizer.location).foregroundStyle(.secondary).fontWeight(.semibold).italic()
+                    }
+                    HStack(spacing: 20){
+                        Text("-")
+                        Text("0").foregroundStyle(.red)
+                        Text("+")
+                    }.padding(10).overlay(RoundedRectangle(cornerRadius: 20).stroke(.gray, lineWidth: 1))
                 }
             }
             Spacer()
@@ -46,9 +53,9 @@ struct AppetizerDetailView: View {
         }.frame(width: 320, height: 600).background(Color(.systemBackground)).clipShape(.rect(cornerRadius: 40)).shadow(radius: 40)
             .overlay(Button{
                 withAnimation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0)) {
-                    isAnimation = false // Hoạt ảnh thu nhỏ khi đóng
+                    isAnimation = false
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { // Chờ hoạt ảnh kết thúc
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     isShowing = false
                 }
             } label: {
@@ -74,7 +81,8 @@ struct ReviewStars: View {
 
     func starView(for index: Int) -> some View {
         let starScore = score - Float(index)
-        let fillRatio = max(0, min(1, starScore)) // Tỉ lệ màu của mỗi sao
+        // Check if score is less than index
+        let fillRatio = max(0, min(1, starScore))
         
         return ZStack(alignment: .leading) {
             Image(systemName: "star.fill")
@@ -82,7 +90,7 @@ struct ReviewStars: View {
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.gray)
 
-            // Phần này tạo ra gradient từ trái sang phải
+            // The filled part of the star 
             GeometryReader { geometry in
                 Rectangle()
                     .foregroundColor(.yellow)

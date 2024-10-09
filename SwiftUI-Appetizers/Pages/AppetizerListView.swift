@@ -44,10 +44,10 @@ struct AppetizerListView: View {
             if viewModel.isShowingDetail{
                 ZStack {
                     // Background tap to close
-                    Color.white.opacity(0.4) // Màu nền mờ
+                    Color.white.opacity(0.4)
                         .ignoresSafeArea()
                         .onTapGesture {
-                            // Hoạt ảnh đóng khi nhấn bên ngoài AppetizerDetailView
+                            // Animate out the AppetizerDetailView when tapped outside
                             withAnimation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0)) {
                                 viewModel.isAnimation = false
                             }

@@ -14,8 +14,8 @@ struct AppetizerTabView: View {
                 AppetizerListView()
             }
 
-            Tab("Order", systemImage: "bag") {
-                OrderView()
+            Tab("Cart", systemImage: "cart") {
+                CartView()
             }
 
             Tab("Account", systemImage: "person") {
