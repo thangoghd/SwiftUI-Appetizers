@@ -58,10 +58,10 @@ struct AppetizerDetailView: View {
                 print("tapped")
             } label: {
                 Text("$\(appetizer.price * Double(controller.getQuantity(for: appetizer.id)), specifier: "%.2f") - Order")
-                    .font(.title3).fontWeight(.semibold)
-                    .frame(width: 260, height: 50)
-                    .foregroundStyle(.white)
-                    .background(Color.mainColor)
+                        .font(.system(size: 13)).fontWeight(.semibold)
+                        .frame(width: 200, height: 50)
+                        .foregroundStyle(.white)
+                        .background(Color.mainColor)
                     .clipShape(.rect(cornerRadius: 40))
             }
             .padding(.bottom, 30)
