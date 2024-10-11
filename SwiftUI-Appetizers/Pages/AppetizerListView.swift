@@ -10,8 +10,9 @@ import SwiftUI
 struct AppetizerListView: View {
     @StateObject private var viewModel = AppetizerListViewModel()
     @StateObject private var controller = AppetizerController()
-    @StateObject private var cartController = CartController()
+    @EnvironmentObject var cartController: CartController
     @State private var showingCart = false
+    @State private var cartUpdateTrigger = false
 
     var body: some View {
         ZStack {
@@ -103,7 +104,10 @@ struct AppetizerListView: View {
             )
         }
         .sheet(isPresented: $showingCart) {
-            CartView(cartController: cartController)
+            CartView()
+        }
+        .onChange(of: cartController.totalItems) { oldValue, newValue in
+            cartUpdateTrigger.toggle()
         }
     }
 }

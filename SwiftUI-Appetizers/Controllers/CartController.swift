@@ -11,11 +11,18 @@ class CartController: ObservableObject {
     @Published var cart = CartModel()
     
     func addToCart(_ appetizer: AppetizersModel, quantity: Int) {
-        cart.addItem(appetizer, quantity: quantity)
+        if let index = cart.items.firstIndex(where: { $0.appetizer.id == appetizer.id }) {
+            cart.items[index].quantity += quantity
+        } else {
+            let newItem = CartItem(id: UUID(), appetizer: appetizer, quantity: quantity)
+            cart.items.append(newItem)
+        }
+        objectWillChange.send()
     }
     
     func removeFromCart(_ item: CartItem) {
-        cart.removeItem(item)
+        cart.items.removeAll { $0.id == item.id }
+        objectWillChange.send()
     }
     
     func updateQuantity(for item: CartItem, quantity: Int) {
@@ -27,12 +34,19 @@ class CartController: ObservableObject {
     }
     
     var totalItems: Int {
-//        cart.items.reduce(0) { $0 + $1.quantity }
-        cart.items.count
+        cart.items.reduce(0) { $0 + $1.quantity }
     }
     
     var totalPrice: Double {
         cart.total
+    }
+    
+    func updateItem(_ item: CartItem, newQuantity: Int, newNote: String) {
+        if let index = cart.items.firstIndex(where: { $0.id == item.id }) {
+            cart.items[index].quantity = newQuantity
+            cart.items[index].note = newNote
+            objectWillChange.send()
+        }
     }
 }
 

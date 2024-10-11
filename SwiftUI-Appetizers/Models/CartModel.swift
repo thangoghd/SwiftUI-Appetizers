@@ -11,6 +11,7 @@ struct CartItem: Identifiable {
     let id: UUID
     let appetizer: AppetizersModel
     var quantity: Int
+    var note: String = ""
 }
 
 class CartModel: ObservableObject {
