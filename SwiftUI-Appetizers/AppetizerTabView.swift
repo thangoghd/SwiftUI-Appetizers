@@ -8,20 +8,27 @@
 import SwiftUI
 
 struct AppetizerTabView: View {
+    @StateObject private var cartController = CartController()
+
     var body: some View {
-        TabView{
-            Tab("Home", systemImage: "house") {
-                AppetizerListView()
-            }
+        TabView {
+            AppetizerListView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
 
-            Tab("Cart", systemImage: "cart") {
-                CartView()
-            }
+            HistotyBillView()
+                .tabItem {
+                    Label("History Bill", systemImage: "clock.arrow.trianglehead.counterclockwise.rotate.90")
+                }
 
-            Tab("Account", systemImage: "person") {
-                AccountView()
-            }
-        }.tint(Color.mainColor)
+            AccountView()
+                .tabItem {
+                    Label("Account", systemImage: "person")
+                }
+        }
+        .tint(Color.mainColor)
+        .environmentObject(cartController)
     }
 }
 

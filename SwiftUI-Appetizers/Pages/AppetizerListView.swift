@@ -8,21 +8,22 @@
 import SwiftUI
 
 struct AppetizerListView: View {
-    @State private var showAlert = false
-    @StateObject var viewModel = AppetizerListViewModel()
-    @StateObject var controller = AppetizerController()
+    @StateObject private var viewModel = AppetizerListViewModel()
+    @StateObject private var controller = AppetizerController()
+    @StateObject private var cartController = CartController()
+    @State private var showingCart = false
 
     var body: some View {
-        ZStack{
+        ZStack {
             NavigationStack {
-                List(viewModel.appertizers){ appetizerItem in
-                    HStack{
-                        AsyncImage(url: URL(string: AppConstants.BASE_URL + AppConstants.UPLOAD_URL + appetizerItem.img)){ image in
+                List(viewModel.appertizers) { appetizerItem in
+                    HStack {
+                        AsyncImage(url: URL(string: AppConstants.BASE_URL + AppConstants.UPLOAD_URL + appetizerItem.img)) { image in
                             image.resizable().aspectRatio(contentMode: .fill)
                         } placeholder: {
                             ProgressView()
                         }.frame(width: 100, height: 100).clipShape(.rect(cornerRadius: 8))
-                        VStack(alignment: .leading, spacing: 5){
+                        VStack(alignment: .leading, spacing: 5) {
                             Text(appetizerItem.name).font(.title2).fontWeight(.medium)
                             Text("$ \(appetizerItem.price, specifier: "%.2f")").foregroundStyle(.secondary).fontWeight(.semibold)
                         }.padding(.leading)
@@ -34,14 +35,38 @@ struct AppetizerListView: View {
                             viewModel.isAnimation = true
                         }
                     }
-                }.navigationTitle("Appetizers")
-                    .disabled(viewModel.isShowingDetail)
+                }
+                .navigationTitle("Appetizers")
+                .disabled(viewModel.isShowingDetail)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            showingCart = true
+                        }) {
+                            ZStack(alignment: .topLeading) {
+                                Image(systemName: "cart")
+                                    .foregroundColor(.primary)
+                                
+                                if cartController.totalItems > 0 {
+                                    Text("\(cartController.totalItems)")
+                                        .font(.caption2).bold()
+                                        .foregroundColor(.white)
+                                        .frame(width: 20, height: 20)
+                                        .background(Color.red)
+                                        .clipShape(Circle())
+                                        .offset(x: -10, y: -10)
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            .onAppear{
+            .onAppear {
                 viewModel.getAppetizers()
-            }.blur(radius: viewModel.isShowingDetail ? 20 : 0)
+            }
+            .blur(radius: viewModel.isShowingDetail ? 20 : 0)
             
-            if viewModel.isShowingDetail{
+            if viewModel.isShowingDetail {
                 ZStack {
                     Color.white.opacity(0.4)
                         .ignoresSafeArea()
@@ -57,6 +82,7 @@ struct AppetizerListView: View {
                     AppetizerDetailView(
                         appetizer: viewModel.selectedAppetizer!,
                         controller: controller,
+                        cartController: cartController,
                         isShowing: $viewModel.isShowingDetail,
                         isAnimation: $viewModel.isAnimation
                     )
@@ -65,18 +91,21 @@ struct AppetizerListView: View {
                 }
             }
             
-            if viewModel.isLoading{
+            if viewModel.isLoading {
                 LoadingView()
             }
-        }.alert(item: $viewModel.alertItem) { alertItem in
+        }
+        .alert(item: $viewModel.alertItem) { alertItem in
             Alert(
                 title: Text(alertItem.title),
                 message: Text(alertItem.message),
                 dismissButton: .default(Text(alertItem.primaryButtonTitle))
             )
         }
+        .sheet(isPresented: $showingCart) {
+            CartView(cartController: cartController)
+        }
     }
-            
 }
 
 #Preview {

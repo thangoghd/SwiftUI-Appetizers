@@ -10,8 +10,10 @@ import SwiftUI
 struct AppetizerDetailView: View {
     let appetizer: AppetizersModel
     @ObservedObject var controller: AppetizerController
+    @ObservedObject var cartController: CartController
     @Binding var isShowing: Bool
     @Binding var isAnimation: Bool
+    @State private var showingAlert = false
     
     var body: some View {
         VStack {
@@ -53,18 +55,33 @@ struct AppetizerDetailView: View {
                 }
             }
             Spacer()
-            
-            Button {
-                print("tapped")
-            } label: {
-                Text("$\(appetizer.price * Double(controller.getQuantity(for: appetizer.id)), specifier: "%.2f") - Order")
+            HStack{
+                Button {
+                    cartController.addToCart(appetizer, quantity: controller.getQuantity(for: appetizer.id))
+                    showingAlert = true
+                } label: {
+                    Text("Add to your cart")
+                        .font(.system(size: 13)).fontWeight(.semibold)
+                        .frame(width: 100, height: 50)
+                        .foregroundStyle(.white)
+                        .background(Color.orange)
+                        .clipShape(.rect(cornerRadius: 30))
+                }
+                
+                Button {
+                    print("Order tapped")
+                } label: {
+                    Text("$\(appetizer.price * Double(controller.getQuantity(for: appetizer.id)), specifier: "%.2f") - Order")
                         .font(.system(size: 13)).fontWeight(.semibold)
                         .frame(width: 200, height: 50)
                         .foregroundStyle(.white)
                         .background(Color.mainColor)
-                    .clipShape(.rect(cornerRadius: 40))
-            }
-            .padding(.bottom, 30)
+                        .clipShape(.rect(cornerRadius: 30))
+                }
+            }.padding(.bottom, 30)
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Added to Cart"), message: Text("\(appetizer.name) has been added to your cart."), dismissButton: .default(Text("OK")))
         }
         .frame(width: 320, height: 600).background(Color(.systemBackground)).clipShape(.rect(cornerRadius: 40)).shadow(radius: 40)
             .overlay(Button{
@@ -75,12 +92,7 @@ struct AppetizerDetailView: View {
                     isShowing = false
                 }
             } label: {
-                ZStack{
-                    Circle().frame(width: 30, height: 30).foregroundStyle(.white).opacity(0.6)
-                    Image(systemName: "xmark").imageScale(.medium).frame(width: 44, height: 44).foregroundStyle(.gray)
-                }
             }, alignment:.topTrailing)
-    
     }
 }
 
@@ -125,7 +137,9 @@ struct ReviewStars: View {
     AppetizerDetailView(
         appetizer: MockData.sampleAppetizer,
         controller: AppetizerController(),
+        cartController: CartController(),
         isShowing: .constant(true),
         isAnimation: .constant(true)
     )
+    .environmentObject(CartController())
 }
